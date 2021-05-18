@@ -1,0 +1,13 @@
+bin_PROGRAMS += masker_ca
+
+masker_ca_SOURCES = \
+        masker/ClientApplication.c
+
+masker_ca_CFLAGS = ${AM_CFLAGS} \
+        -iquote $(top_srcdir)/../libtee/include
+
+masker_ca_LDFLAGS = ${AM_LDFLAGS} \
+        -rdynamic
+
+masker_ca_LDADD = \
+        ../libtee/libtee.la

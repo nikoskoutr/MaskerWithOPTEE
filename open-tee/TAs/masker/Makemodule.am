@@ -1,0 +1,13 @@
+ta_LTLIBRARIES += libmasker.la
+
+libmasker_la_includes = \
+        include/tee_ta_properties.h
+
+libmasker_la_SOURCES = ${libmasker_la_includes} \
+        masker/TrustedApplication.c
+
+libmasker_la_CFLAGS = ${AM_CFLAGS} \
+        -iquote $(top_srcdir)/include \
+        -iquote $(top_srcdir)/../emulator/include
+
+libmasker_la_LDFLAGS = ${AM_LDFLAGS}
