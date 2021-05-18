@@ -16,11 +16,6 @@ int main(int argc, char *argv[])
 	int consumption;
 	char signature[2048];
 	
-	/* OP-TEE Vars */
-	TEEC_Operation op;
-	uint32_t origin;
-	TEEC_Result res;
-	
 	/* there should be at least 1 arg (consumption) for correct execution */
 	if ( argc < 2 ) 
     {
