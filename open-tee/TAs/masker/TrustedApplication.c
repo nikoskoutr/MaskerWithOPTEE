@@ -2,6 +2,19 @@
 #include <tee_internal_api.h>
 #include "tee_logging.h"
 
+#ifdef TA_PLUGIN
+#include "tee_ta_properties.h"
+
+/* UUID must be unique */
+SET_TA_PROPERTIES(
+    { 0x12345678, 0x8765, 0x4321, { 'M', 'A', 'S', 'K', '0', '0', '0', '2'} }, /* UUID */
+        512, /* dataSize */
+        255, /* stackSize */
+        1, /* singletonInstance */
+        1, /* multiSession */
+        1) /* instanceKeepAlive */
+#endif
+
 #define MAX_RSA_KEYSIZE 2048
 #define MASKER 1
 

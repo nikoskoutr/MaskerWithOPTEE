@@ -16,6 +16,23 @@ int main(int argc, char *argv[])
 	int consumption;
 	char signature[2048];
 	
+	/*  Prepare the OP-TEE session and related parameters */
+	TEEC_Operation op;
+	uint32_t origin;
+	TEEC_Result res;
+	TEEC_Context ctx;
+    TEEC_Session sess;
+
+	res = TEEC_InitializeContext(NULL, &ctx);
+    if (res != TEEC_SUCCESS) {
+        errx(1, "TEEC_InitializeContext failed with code 0x%x", res);
+	}
+
+    res = TEEC_OpenSession(&ctx, &sess, &uuid, TEEC_LOGIN_PUBLIC, NULL, NULL, &origin);
+	if (res != TEEC_SUCCESS) {
+		errx(1, "TEEC_Opensession failed with code 0x%x origin 0x%x", res, origin);
+	}
+	
 	/* there should be at least 1 arg (consumption) for correct execution */
 	if ( argc < 2 ) 
     {
@@ -40,22 +57,7 @@ int main(int argc, char *argv[])
 			sm_seq = "211";
 	}
 
-	/*  Prepare the OP-TEE session and related parameters */
-	TEEC_Operation op;
-	uint32_t origin;
-	TEEC_Result res;
-	TEEC_Context ctx;
-    TEEC_Session sess;
-
-	res = TEEC_InitializeContext(NULL, &ctx);
-    if (res != TEEC_SUCCESS) {
-        errx(1, "TEEC_InitializeContext failed with code 0x%x", res);
-	}
-
-    res = TEEC_OpenSession(&ctx, &sess, &uuid, TEEC_LOGIN_PUBLIC, NULL, NULL, &origin);
-	if (res != TEEC_SUCCESS) {
-		errx(1, "TEEC_Opensession failed with code 0x%x origin 0x%x", res, origin);
-	}
+	
 
 	memset(&op, 0, sizeof(op));
 	op.paramTypes = TEEC_PARAM_TYPES(TEEC_MEMREF_TEMP_INPUT,
