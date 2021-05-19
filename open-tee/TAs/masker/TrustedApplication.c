@@ -69,6 +69,10 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 
 	OT_LOG(LOG_ERR, "Data: %s, Digest: %s", data, digest);
 
+	if(!digest){
+		OT_LOG(LOG_ERR, "AFTER AFTER AFTER DIGEST IS NULL");
+	}
+
 	// If key exists for smart meter ID then fetch it
 	TEE_ObjectHandle key;
 
