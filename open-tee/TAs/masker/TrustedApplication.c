@@ -180,6 +180,7 @@ void TA_CloseSessionEntryPoint(void *sess_ctx)
 TEE_Result TA_InvokeCommandEntryPoint(void * sess_ctx, uint32_t cmd_id, uint32_t param_types, TEE_Param params[4]) 
 {
 	if(cmd_id == MASKER) { // TODO: ADD MASKER COMMAND ID
+	printf("Entered TEE\n");
     return masker(param_types, params);
   } else {
     return TEE_ERROR_BAD_PARAMETERS;
