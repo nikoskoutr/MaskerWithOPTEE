@@ -96,6 +96,14 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 		TEE_CloseObject(key);
 		return ret;
 	}
+
+	ret = TEE_SetOperationKey(rsa_operation, key);
+	if (ret != TEE_SUCCESS) {
+      OT_LOG(LOG_ERR, "TEE_SetOperationKey failed");
+	  TEE_FreeOperation(rsa_operation);
+	  TEE_CloseObject(key);
+    }
+
 	ret = TEE_AsymmetricSignDigest(rsa_operation, NULL, 0, digest, digestLen, signature, signatureLen);
     if (ret != TEE_SUCCESS) {
       OT_LOG(LOG_ERR, "TEE_AsymmetricSignDigest failed");
