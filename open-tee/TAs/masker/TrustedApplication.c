@@ -143,6 +143,8 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 	  TEE_CloseObject(key);
     }
 
+	OT_LOG(LOG_ERR, "ENDED SIGNATURE");
+
 	TEE_CloseObject(key);
 	TEE_FreeOperation(rsa_operation);
 	return ret;
