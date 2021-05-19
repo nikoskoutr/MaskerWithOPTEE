@@ -103,6 +103,10 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 
 		TEE_CloseObject(temp_key);
 	}
+
+	if(!digest){
+		OT_LOG(LOG_ERR, "AFTER key IS NULL");
+	}
 	
 
 	// Sign the hash
@@ -113,6 +117,10 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 		TEE_FreeOperation(rsa_operation);
 		TEE_CloseObject(key);
 		return ret;
+	}
+
+	if(!digest){
+		OT_LOG(LOG_ERR, "AFTER operation IS NULL");
 	}
 
 	ret = TEE_SetOperationKey(rsa_operation, key);
