@@ -138,6 +138,10 @@ int masker(uint32_t param_types, TEE_Param * params) {
 	unsigned char signature = params[3].memref.buffer; // Buffer used to return the signature to the normal world
 	size_t signatureLen = 2048; // The size of the signature
 
+	if(!mask_buffer) {
+		OT_LOG(LOG_ERR,"mask_buffer is null!!");
+	}
+
 	do {
 		unsigned char gened_mask[32]; // Temporary mask generation buffer
 		ret = gen_randoms(256, gened_mask);
