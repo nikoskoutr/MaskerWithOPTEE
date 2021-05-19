@@ -25,6 +25,7 @@ TEE_Result gen_randoms(int size_bits, unsigned char * mask)
 	int size_bytes = size_bits / 8;
 
 	TEE_GenerateRandom(mask, size_bytes);
+	printf("Generated Randoms\n");
 
 	return ret;
 }
