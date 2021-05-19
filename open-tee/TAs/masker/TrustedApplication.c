@@ -1,5 +1,6 @@
 #include <string.h>
 #include <tee_internal_api.h>
+#include <stdio.h>
 #include "tee_logging.h"
 
 #ifdef TA_PLUGIN
