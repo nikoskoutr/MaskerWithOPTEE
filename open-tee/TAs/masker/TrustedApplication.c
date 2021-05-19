@@ -35,7 +35,7 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 {
 	TEE_Result ret = TEE_SUCCESS;
 
-	unsigned char digest[64];
+	unsigned char digest[64] = "";
 	int digestLen = 64;
 
 	// Calculate hash
