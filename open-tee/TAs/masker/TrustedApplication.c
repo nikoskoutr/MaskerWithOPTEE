@@ -47,13 +47,25 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 		return ret;
 	}
 
+	if(!digest){
+		OT_LOG(LOG_ERR, "BEFORE DIGEST IS NULL");
+	}
+
 	ret = TEE_DigestDoFinal(dig_operation, data, dataLen, digest, &digestLen);
 	if (ret != TEE_SUCCESS) {
 		OT_LOG(LOG_ERR, "TEE_AllocateOperation failed");
 		TEE_FreeOperation(dig_operation);
 	}
 
+	if(!digest){
+		OT_LOG(LOG_ERR, "AFTER IS NULL");
+	}
+
 	TEE_FreeOperation(dig_operation);
+
+	if(!digest){
+		OT_LOG(LOG_ERR, "AFTER AFTER DIGEST IS NULL");
+	}
 
 	OT_LOG(LOG_ERR, "Data: %s, Digest: %s", data, digest);
 
