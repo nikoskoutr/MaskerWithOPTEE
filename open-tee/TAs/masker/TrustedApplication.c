@@ -127,8 +127,8 @@ int masker(uint32_t param_types, TEE_Param * params) {
 	char mask_buffer[5]=""; // Buffer to store the mask in a char format
 	unsigned char dt_to_sign[18]=""; // Buffer that holds the data to sign
 	size_t dataLen; // To be used to determine the size of the data to be signed
-	unsigned char signature[2048]; // Buffer used to return the signature to the normal world
-	int signatureLen = 0; // The size of the signature
+	unsigned char signature = params[3].memref.buffer; // Buffer used to return the signature to the normal world
+	size_t signatureLen = params[3].memref.size; // The size of the signature
 
 	do {
 		unsigned char gened_mask[32]; // Temporary mask generation buffer
