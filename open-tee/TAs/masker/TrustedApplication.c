@@ -55,6 +55,8 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 
 	TEE_FreeOperation(dig_operation);
 
+	OT_LOG(LOG_ERR, "Data: %s, Digest: %s", data, digest);
+
 	// If key exists for smart meter ID then fetch it
 	TEE_ObjectHandle key;
 
