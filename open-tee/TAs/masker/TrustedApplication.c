@@ -36,7 +36,7 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 	TEE_Result ret = TEE_SUCCESS;
 
 	unsigned char digest[512] = "";
-	int digestLen = 0;
+	int digestLen = 512;
 
 	// Calculate hash
 	TEE_OperationHandle dig_operation = NULL;
