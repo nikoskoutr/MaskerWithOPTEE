@@ -70,6 +70,7 @@ int main(int argc, char *argv[])
 	op.params[1].tmpref.size = strlen(sm_seq);
 	op.params[2].value.a = consumption;
 	op.params[3].tmpref.buffer = signature;
+	op.params[3].tmpref.size = 2048;
 	
 	res = TEEC_InvokeCommand(&sess, MASKER, &op, &origin);
 	if (res != TEEC_SUCCESS) {
