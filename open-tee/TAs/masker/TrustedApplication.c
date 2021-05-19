@@ -35,8 +35,8 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 {
 	TEE_Result ret = TEE_SUCCESS;
 
-	unsigned char digest = TEE_Malloc(512, 0);
-	int digestLen = 512;
+	unsigned char digest[64];
+	int digestLen = 64;
 
 	// Calculate hash
 	TEE_OperationHandle dig_operation = NULL;
@@ -120,7 +120,6 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
     }
 
 	TEE_CloseObject(key);
-	TEE_Free(digest);
 	TEE_FreeOperation(rsa_operation);
 	return ret;
 }
