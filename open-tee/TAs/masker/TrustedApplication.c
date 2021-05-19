@@ -58,7 +58,7 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 	// If key exists for smart meter ID then fetch it
 	TEE_ObjectHandle key;
 
-	ret = TEE_OpenPersistentObject(TEE_STORAGE_PRIVATE, sm_id, strlen(sm_id), TEE_DATA_FLAG_ACCESS_READ, &key);
+	ret = TEE_OpenPersistentObject(TEE_STORAGE_PRIVATE, sm_id, strlen(sm_id), TEE_DATA_FLAG_SHARE_READ, &key);
 	if (ret != TEE_SUCCESS) {
 		OT_LOG(LOG_ERR, "TEE_OpenPersistentObject failed");
 		// If there is no key, then generate and store it
@@ -93,14 +93,17 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 	if (ret != TEE_SUCCESS) {
 		OT_LOG(LOG_ERR, "TEE_AllocateOperation failed");
 		TEE_FreeOperation(rsa_operation);
+		TEE_CloseObject(key);
 		return ret;
 	}
 	ret = TEE_AsymmetricSignDigest(rsa_operation, NULL, 0, digest, digestLen, signature, signatureLen);
     if (ret != TEE_SUCCESS) {
       OT_LOG(LOG_ERR, "TEE_AsymmetricSignDigest failed");
 	  TEE_FreeOperation(rsa_operation);
+	  TEE_CloseObject(key);
     }
 
+	TEE_CloseObject(key);
 	TEE_FreeOperation(rsa_operation);
 	return ret;
 }
