@@ -9,8 +9,8 @@
 /* UUID must be unique */
 SET_TA_PROPERTIES(
     { 0x12345678, 0x8765, 0x4321, { 'M', 'A', 'S', 'K', '0', '0', '0', '2'} }, /* UUID */
-        512, /* dataSize */
-        255, /* stackSize */
+        2048, /* dataSize */
+        2048, /* stackSize */
         1, /* singletonInstance */
         1, /* multiSession */
         1) /* instanceKeepAlive */
