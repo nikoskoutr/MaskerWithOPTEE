@@ -191,6 +191,7 @@ int masker(uint32_t param_types, TEE_Param * params) {
 	
 	dataLen = strlen(dt_to_sign);
 	ret = doSign(sm_id, dt_to_sign, dataLen, signature, &signatureLen); 
+	OT_LOG(LOG_ERR,"3 DEBUG");
 	return TEE_SUCCESS;
 }
 
