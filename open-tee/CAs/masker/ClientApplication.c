@@ -70,6 +70,7 @@ int main(int argc, char *argv[])
 	op.params[3].tmpref.size = 2048;
 	
 	res = TEEC_InvokeCommand(&sess, MASKER, &op, &origin);
+	printf("test\n");
 	if (res != TEEC_SUCCESS) {
     	errx(1, "TEEC_InvokeCommand(GENERATE_KEY) failed 0x%x origin 0x%x", res, origin);
 	}

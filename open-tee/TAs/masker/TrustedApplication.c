@@ -9,8 +9,8 @@
 /* UUID must be unique */
 SET_TA_PROPERTIES(
     { 0x12345678, 0x8765, 0x4321, { 'M', 'A', 'S', 'K', '0', '0', '0', '2'} }, /* UUID */
-        2048, /* dataSize */
-        2048, /* stackSize */
+        8192, /* dataSize */
+        8192, /* stackSize */
         1, /* singletonInstance */
         1, /* multiSession */
         1) /* instanceKeepAlive */
@@ -147,6 +147,7 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 
 	TEE_CloseObject(key);
 	TEE_FreeOperation(rsa_operation);
+	OT_LOG(LOG_ERR, "2 ENDED SIGNATURE");
 	return ret;
 }
 
@@ -228,7 +229,6 @@ void TA_CloseSessionEntryPoint(void *sess_ctx)
 TEE_Result TA_InvokeCommandEntryPoint(void * sess_ctx, uint32_t cmd_id, uint32_t param_types, TEE_Param params[4]) 
 {
 	if(cmd_id == MASKER) { // TODO: ADD MASKER COMMAND ID
-	printf("Entered TEE\n");
     return masker(param_types, params);
   } else {
     return TEE_ERROR_BAD_PARAMETERS;
