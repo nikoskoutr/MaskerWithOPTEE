@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     	errx(1, "TEEC_InvokeCommand(GENERATE_KEY) failed 0x%x origin 0x%x", res, origin);
 	}
 
-	printf("The signature is: %s", signature);
+	printf("The size is: %d The signature is: %s", op.params[3].tmpref.size, signature);
 
 
 	TEEC_CloseSession(&sess);
