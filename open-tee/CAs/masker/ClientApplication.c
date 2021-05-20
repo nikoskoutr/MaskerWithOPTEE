@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 	char *sm_id;
 	char *sm_seq;
 	int consumption;
-	char signature[2048] = "test";
+	unsigned char signature[2048] = "";
 	
 	
 	
