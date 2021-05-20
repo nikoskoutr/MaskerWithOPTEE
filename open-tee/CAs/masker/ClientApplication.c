@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 	}
 
 	memset(&op, 0, sizeof(op));
-	op.paramTypes = TEEC_PARAM_TYPES(TEEC_MEMREF_TEMP_INPUT, TEEC_MEMREF_TEMP_INPUT, TEEC_VALUE_INOUT, TEEC_MEMREF_TEMP_OUT);
+	op.paramTypes = TEEC_PARAM_TYPES(TEEC_MEMREF_TEMP_INPUT, TEEC_MEMREF_TEMP_INPUT, TEEC_VALUE_INOUT, TEEC_MEMREF_TEMP_OUTPUT);
 	op.params[0].tmpref.buffer = sm_id;
 	op.params[0].tmpref.size = strlen(sm_id);
 	op.params[1].tmpref.buffer = sm_seq;
