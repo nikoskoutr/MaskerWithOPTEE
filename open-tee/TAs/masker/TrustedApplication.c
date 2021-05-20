@@ -163,7 +163,7 @@ int masker(uint32_t param_types, TEE_Param * params) {
 	unsigned char dt_to_sign[18]=""; // Buffer that holds the data to sign
 	size_t dataLen; // To be used to determine the size of the data to be signed
 	unsigned char * signature = params[3].memref.buffer; // Buffer used to return the signature to the normal world
-	size_t signatureLen = 2048; // The size of the signature
+	size_t signatureLen = params[3].memref.size; // The size of the signature
 
 	OT_LOG(LOG_ERR,"Signature is: %s", signature);
 
@@ -190,7 +190,8 @@ int masker(uint32_t param_types, TEE_Param * params) {
 	strncat(dt_to_sign, sm_seq, 3); // Add smart meter seqence number to the data to sign
 	
 	dataLen = strlen(dt_to_sign);
-	ret = doSign(sm_id, dt_to_sign, dataLen, signature, &signatureLen); 
+	ret = doSign(sm_id, dt_to_sign, dataLen, signature, &signatureLen);
+	params[3].memref.size = signatureLen;
 	OT_LOG(LOG_ERR, "3 DEBUG");
 	return TEE_SUCCESS;
 }
