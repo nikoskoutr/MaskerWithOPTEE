@@ -191,7 +191,7 @@ int masker(uint32_t param_types, TEE_Param * params) {
 	
 	dataLen = strlen(dt_to_sign);
 	ret = doSign(sm_id, dt_to_sign, dataLen, signature, &signatureLen); 
-	OT_LOG(LOG_ERR,"3 DEBUG");
+	OT_LOG(LOG_ERR, "3 DEBUG");
 	return TEE_SUCCESS;
 }
 
@@ -230,7 +230,9 @@ void TA_CloseSessionEntryPoint(void *sess_ctx)
 TEE_Result TA_InvokeCommandEntryPoint(void * sess_ctx, uint32_t cmd_id, uint32_t param_types, TEE_Param params[4]) 
 {
 	if(cmd_id == MASKER) { // TODO: ADD MASKER COMMAND ID
-    return masker(param_types, params);
+    masker(param_types, params);
+	OT_LOG(LOG_ERR, "4 DEBUG");
+	return TEE_SUCCESS;
   } else {
     return TEE_ERROR_BAD_PARAMETERS;
 	}
