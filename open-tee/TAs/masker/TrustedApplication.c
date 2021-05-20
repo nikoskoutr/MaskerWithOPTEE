@@ -143,7 +143,7 @@ int doSign(unsigned char * sm_id, unsigned char * data, int dataLen, unsigned ch
 	  TEE_CloseObject(key);
     }
 
-	OT_LOG(LOG_ERR, "ENDED SIGNATURE");
+	OT_LOG(LOG_ERR, "ENDED SIGNATURE SIZE IS: %d", *signatureLen);
 
 	TEE_CloseObject(key);
 	TEE_FreeOperation(rsa_operation);
