@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 	char *sm_id;
 	char *sm_seq;
 	int consumption;
-	unsigned char signature[2048] = "";
+	unsigned char signature[256] = "";
 	
 	
 	
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 	op.params[1].tmpref.size = strlen(sm_seq);
 	op.params[2].value.a = consumption;
 	op.params[3].tmpref.buffer = signature;
-	op.params[3].tmpref.size = 2048;
+	op.params[3].tmpref.size = 256;
 	
 	res = TEEC_InvokeCommand(&sess, MASKER, &op, &origin);
 	printf("test\n");
